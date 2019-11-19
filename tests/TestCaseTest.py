@@ -1,4 +1,4 @@
-from src.Run.TestCase import TestCase
+from unittest import TestCase
 from src.Run.WasRun import WasRun
 
 
@@ -15,8 +15,16 @@ class TestCaseTest(TestCase):
     def tearDown(self):
         pass
 
+    def testResult(self):
+        test = WasRun("testMethod")
+        result = test.run()
+        assert ("1 run, 0 failed" == result.summary())
 
-TestCaseTest("testTemplateMethod").run()
+    def testFailedResult(self):
+        test = WasRun("testMethod")
+        result = test.run()
+        assert ("1 run, 1 failed", result.summary)
+
 
 if __name__ == '__main__':
     TestCase.main()

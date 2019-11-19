@@ -4,11 +4,13 @@ from Run.TestCase import TestCase
 class WasRun(TestCase):
 
     def setUp(self):
-        self.log = "setUp"
+        self.log = "setUp "
 
     def testMethod(self):
-        self.log = self.log + "testMethod"
+        self.log = self.log + "testMethod "
 
     def tearDown(self):
         self.log = self.log + "tearDown"
 
+    def testBrokenMethod(self):
+        raise Exception
