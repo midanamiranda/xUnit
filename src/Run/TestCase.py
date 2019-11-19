@@ -9,13 +9,14 @@ class TestCase:
     def setUp(self, name):
         pass
 
-    def run(self):
-        result = TestResult()
+    def run(self, result):
         result.testStarted()
         self.setUp()
-        exec "self." + self.name + "()"
+        try:
+            exec "self." + self.name + "()"
+        except:
+            result.testFailed()
         self.tearDown()
-        return result
 
     def tearDown(self):
         pass
