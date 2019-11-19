@@ -3,14 +3,20 @@ from src.Run.WasRun import WasRun
 
 
 class TestCaseTest(TestCase):
-    def testRunning(self):
+
+    def setUp(self):
+        self.test = WasRun("testMethod")
+
+    def testTemplateMethod(self):
         test = WasRun("testMethod")
-        assert (not test.wasRun)
         test.run()
-        assert test.wasRun
+        assert ("setUp testMethod tearDown" == test.log)
+
+    def tearDown(self):
+        pass
 
 
-TestCaseTest("testRunning").run()
+TestCaseTest("testTemplateMethod").run()
 
 if __name__ == '__main__':
     TestCase.main()
