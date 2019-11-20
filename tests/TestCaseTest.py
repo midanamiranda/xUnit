@@ -1,4 +1,5 @@
 from unittest import TestCase
+
 from src.Run.WasRun import WasRun
 from tests.TestResult import TestResult
 from tests.TestSuite import TestSuite
@@ -7,11 +8,11 @@ from tests.TestSuite import TestSuite
 class TestCaseTest(TestCase):
 
     def setUp(self):
-        self.test = WasRun("testMethod")
+        self.result = TestResult()
 
     def testTemplateMethod(self):
         test = WasRun("testMethod")
-        test.run()
+        test.run(self.result)
         assert ("setUp testMethod tearDown" == test.log)
 
     def tearDown(self):
@@ -19,27 +20,25 @@ class TestCaseTest(TestCase):
 
     def testResult(self):
         test = WasRun("testMethod")
-        result = test.run()
-        assert ("1 run, 0 failed" == result.summary())
+        test.run(self.result)
+        assert ("1 run, 0 failed" == self.result.summary())
 
     def testFailedResult(self):
         test = WasRun("testMethod")
-        result = test.run()
-        assert ("1 run, 1 failed", result.summary)
+        test.run(self.result)
+        assert ("1 run, 1 failed", self.result.summary)
 
     def testFailedResultFormatting(self):
-        result = TestResult()
-        result.testStarted()
-        result.testFailed()
-        assert ("1 run, 1 failed" == result.summary())
+        self.result.testStarted()
+        self.result.testFailed()
+        assert ("1 run, 1 failed" == self.result.summary())
 
     def testSuite(self):
         suite = TestSuite()
         suite.add(WasRun("testMethod"))
         suite.add(WasRun("testBrokenMethod"))
-        result = TestResult()
-        suite.run(result)
-        assert ("2 run, 1 failed" == result.summary())
+        suite.run(self.result)
+        assert ("2 run, 1 failed" == self.result.summary())
 
 
 suite = TestSuite()

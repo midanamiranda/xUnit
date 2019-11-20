@@ -1,3 +1,5 @@
+from unittest import SkipTest
+
 from tests.TestResult import TestResult
 
 
