@@ -1,8 +1,3 @@
-from unittest import SkipTest
-
-from tests.TestResult import TestResult
-
-
 class TestCase:
 
     def __init__(self, name):
