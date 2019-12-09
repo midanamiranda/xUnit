@@ -34,10 +34,10 @@ class TestCaseTest(TestCase):
         assert ("1 run, 1 failed" == self.result.summary())
 
     def testSuite(self):
-        suite = TestSuite()
-        suite.add(WasRun("testMethod"))
-        suite.add(WasRun("testBrokenMethod"))
-        suite.run(self.result)
+        new_suite = TestSuite()
+        new_suite.add(WasRun("testMethod"))
+        new_suite.add(WasRun("testBrokenMethod"))
+        new_suite.run(self.result)
         assert ("2 run, 1 failed" == self.result.summary())
 
 
