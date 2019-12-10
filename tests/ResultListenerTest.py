@@ -3,8 +3,10 @@ from tests.TestResult import TestResult
 
 
 class ResultListenerTest:
-    def testNotification(self):
+    def __init__(self):
         self.count = 0
+
+    def testNotification(self):
         result = TestResult()
         result.addListener(self)
         WasRun("testMethod").run(result)
